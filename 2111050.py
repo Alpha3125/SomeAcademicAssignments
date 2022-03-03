@@ -17,6 +17,7 @@ class Univariate:
         print('Enter the degrees: ')
         for i in range (self.terms):
             self.deg.append(int(input('x^')))
+        self.disp()
 
     def disp(self):
         polynomial = ''
@@ -39,8 +40,18 @@ class Univariate:
         self.disp()
 
     def multiply(self, U):
-        pass
-
+        multdeg=[]
+	    multcoeff=[]
+	    multterms=self.terms*U.terms
+        for i in range(self.terms):
+            for j in range(U.terms):
+                multcoeff.append(self.coeff[i]*U.coeff[j])
+                multdeg.append(self.deg[i]+U.deg[j])
+        self.terms=multterms
+        self.deg=multdeg
+        self.coeff=multcoeff
+        self.disp()
+        
 class Polyvariate:
     def __init__(self):
         self.terms = 0
@@ -61,6 +72,7 @@ class Polyvariate:
                 powers.append(int(input(chr(112+j)+'^')))
             self.deg.append(powers)
             print('--')
+        self.disp()
 
     def disp(self):
         polynomial = ''
@@ -97,7 +109,6 @@ if choice == 1:
     print('\n\t\tFIRST POLYNOMIAL')
     P1 = Univariate()
     P1.start()
-    P1.disp()
     print('\t\tSECOND POLYNOMIAL')
     P2 = Univariate()
     P2.start()
@@ -106,7 +117,6 @@ elif choice == 2:
     print('\n\t\tFIRST POLYNOMIAL')
     P1 = Polyvariate()
     P1.start()
-    P1.disp()
     print('\t\tSECOND POLYNOMIAL')
     P2 = Polyvariate()
     P2.start()
