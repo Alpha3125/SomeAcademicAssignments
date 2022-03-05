@@ -29,7 +29,7 @@ class Univariate:
         print()
         
     def add(self, U):
-        for i in range(self.terms):
+        for i in range(self.terms)
             if self.deg[i] in U.deg:
                 self.coeff[i] += U.coeff[U.deg.index(self.deg[i])]
         for i in range(U.terms):
@@ -51,6 +51,9 @@ class Univariate:
         self.deg=multdeg
         self.coeff=multcoeff
         self.disp()
+
+    def arrange(self):
+        pass
         
 class Polyvariate:
     def __init__(self):
@@ -100,6 +103,9 @@ class Polyvariate:
         self.disp()
 
     def multiply(self, U):
+        pass
+
+    def arrange():
         pass
 
 
