@@ -84,11 +84,11 @@ class Univariate:
             while(j < self.terms):
                 if self.deg[i] < self.deg[j]:
                     temp=self.deg[i]
-                    self.deg[i]=self.deg[j]
-                    self.deg[j]=temp
+                    self.deg[i] = self.deg[j]
+                    self.deg[j] = temp
                     temp=self.coeff[i]
-                    self.coeff[i]=self.coeff[j]
-                    self.coeff[j]=temp
+                    self.coeff[i] = self.coeff[j]
+                    self.coeff[j] = temp
                 j += 1
             i += 1
 
@@ -192,11 +192,11 @@ class Multivariate:
             while(j < self.terms):
                 if sum(self.deg[i]) < sum(self.deg[j]):
                     temp=self.deg[i]
-                    self.deg[i]=self.deg[j]
-                    self.deg[j]=temp
-                    temp=self.coeff[i]
-                    self.coeff[i]=self.coeff[j]
-                    self.coeff[j]=temp
+                    self.deg[i] = self.deg[j]
+                    self.deg[j] = temp
+                    temp = self.coeff[i]
+                    self.coeff[i] = self.coeff[j]
+                    self.coeff[j] = temp
                 j += 1
             i +=1
 
