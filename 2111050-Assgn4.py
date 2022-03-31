@@ -18,7 +18,7 @@ class Stack:
             
     def pop(self):
         if self.top!=None:
-            x=self.top
+            x=self.top.data
             self.top=self.top.next
             return x
         else:
@@ -32,12 +32,30 @@ class Stack:
             current=current.next
         print('BOTTOM')
         
+    def printStackFromBottom(self):
+        Temp=Stack()
+        while True:
+            x=self.pop()
+            if x==None:
+                break
+            else:
+                Temp.push(x)
+        print('\nBOTTOM')
+        current=Temp.top
+        while current !=None:
+            print(current.data)
+            current=current.next
+        print('TOP')
+        self=Temp
+            
     def addOne(self):
         Temp=Stack()
         carry=1
         while True:
             x=self.pop()
-            if self.pop==None:
+            print(x)
+            if x==None:
+                print('broke')
                 break
             else:
                 x+=carry
@@ -46,18 +64,21 @@ class Stack:
                     carry=1
                 else:
                     Temp.push(x)
+        while True:
+            x=Temp.pop()
+            if x==None:
+                break
+            else:
+                self.push(x)
         
 
 def decToBinStack(n,obj):
-    x=0
+    dig=[]
     while n!=0:
-        x*=10
-        x+=n%2
+        dig.append(n%2)
         n=n//2
-    while x!=0:
-        dig=x%10
-        obj.push(dig)
-        x=x//10
+    for i in range(-1,-1-1*len(dig),-1):
+        obj.push(dig[i])
 
 def binToDec(obj):
     if obj.top==None:
@@ -69,7 +90,7 @@ def binToDec(obj):
             x=x+current.data*(2**i)
             current=current.next
             i+=1
-        print(x)
+        print('DECIMAL:',x)
 
 
 n=int(input('Enter a positive number: '))
@@ -79,6 +100,8 @@ else:
     Binary=Stack()
     decToBinStack(n,Binary)
     Binary.printStack()
-    #k=input('ADD ONE!')
-    #Binary.addOne()
+    Binary.printStackFromBottom()
+    k=input('ADD ONE!')
+    Binary.addOne()
+    Binary.printStackFromBottom()
     binToDec(Binary)
