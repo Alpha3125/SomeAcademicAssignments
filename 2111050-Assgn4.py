@@ -25,61 +25,42 @@ class Stack:
              return None
 
     def printStack(self):
-        print('\nTOP')
         current=self.top
         while current !=None:
             print(current.data)
             current=current.next
-        print('BOTTOM')
-        
-    def printStackFromBottom(self):
-        Temp=Stack()
-        while True:
-            x=self.pop()
-            if x==None:
-                break
-            else:
-                Temp.push(x)
-        print('\nBOTTOM')
-        current=Temp.top
-        while current !=None:
-            print(current.data)
-            current=current.next
-        print('TOP')
-        self=Temp
             
-    def addOne(self):
-        Temp=Stack()
+        
+def reverse(obj1,obj2):
+    while True:
+        x=obj1.pop()
+        if x==None:
+            break
+        else:
+            obj2.push(x)
+            
+def addOne(obj1,obj2):
         carry=1
         while True:
-            x=self.pop()
-            print(x)
+            x=obj1.pop()
             if x==None:
-                print('broke')
                 break
             else:
                 x+=carry
+                carry=0
                 if x==2:
-                    Temp.push(0)
+                    obj2.push(0)
                     carry=1
                 else:
-                    Temp.push(x)
-        while True:
-            x=Temp.pop()
-            if x==None:
-                break
-            else:
-                self.push(x)
+                    obj2.push(x)
+        if carry==1:
+            obj2.push(carry)
         
-
 def decToBinStack(n,obj):
-    dig=[]
     while n!=0:
-        dig.append(n%2)
+        obj.push(n%2)
         n=n//2
-    for i in range(-1,-1-1*len(dig),-1):
-        obj.push(dig[i])
-
+        
 def binToDec(obj):
     if obj.top==None:
         print('Empty')
@@ -90,18 +71,20 @@ def binToDec(obj):
             x=x+current.data*(2**i)
             current=current.next
             i+=1
-        print('DECIMAL:',x)
+        print('\nDECIMAL:',x)
 
 
-n=int(input('Enter a positive number: '))
+n=int(input('\nEnter a positive number: '))
 if n<0:
     print('ERROR! Please enter a positve number')
 else:
-    Binary=Stack()
-    decToBinStack(n,Binary)
-    Binary.printStack()
-    Binary.printStackFromBottom()
-    k=input('ADD ONE!')
-    Binary.addOne()
-    Binary.printStackFromBottom()
-    binToDec(Binary)
+    Binary1=Stack()
+    Binary2=Stack()
+    decToBinStack(n,Binary1)
+    reverse(Binary1,Binary2)
+    Binary2.printStack()
+    k=input('\n\t\tADD ONE\n')
+    addOne(Binary2,Binary1)
+    reverse(Binary1,Binary2)
+    Binary2.printStack()
+    binToDec(Binary2)
