@@ -15,6 +15,14 @@ class Stack:
         else:
             newNode.next=self.top
             self.top=newNode
+            
+    def pop(self):
+        if self.top!=None:
+            x=self.top
+            self.top=self.top.next
+            return x
+        else:
+             return None
 
     def printStack(self):
         print('\nTOP')
@@ -23,6 +31,22 @@ class Stack:
             print(current.data)
             current=current.next
         print('BOTTOM')
+        
+    def addOne(self):
+        Temp=Stack()
+        carry=1
+        while True:
+            x=self.pop()
+            if self.pop==None:
+                break
+            else:
+                x+=carry
+                if x==2:
+                    Temp.push(0)
+                    carry=1
+                else:
+                    Temp.push(x)
+        
 
 def decToBinStack(n,obj):
     x=0
